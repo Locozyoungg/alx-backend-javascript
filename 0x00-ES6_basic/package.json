@@ -1,0 +1,24 @@
+{
+  "name": "alx-maze_project ",
+  "version": "1.0.0",
+  "description": "This is a music recommender website to help enrich your playlist with what you like",
+  "main": "dist/0-main.js",
+  "scripts": {
+    "build": "babel src -d dist",
+    "start": "node dist/0-main.js",
+    "test": "jest",
+    "lint": "eslint ."
+  },
+  "author": "Collins Oloo & Amos Shikoli",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.13.16",
+    "@babel/core": "^7.14.0",
+    "@babel/preset-env": "^7.14.1",
+    "@babel/preset-react": "^7.13.13",
+    "babel-jest": "^26.6.3",
+    "eslint": "^7.26.0",
+    "jest": "^26.6.3"
+  },
+  "dependencies": {}
+}
