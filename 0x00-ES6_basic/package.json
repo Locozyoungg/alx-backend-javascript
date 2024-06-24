@@ -1,0 +1,19 @@
+{
+  "name": "alx-backend-javascript",
+  "version": "1.0.0",
+  "description": "ES6 Basics project for ALX Software Engineering program",
+  "scripts": {
+    "test": "jest",
+    "dev": "babel-node"
+  },
+  "author": "Collins Oloo",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
+    "babel-jest": "^27.4.5",
+    "eslint": "^8.2.0",
+    "jest": "^27.4.7"
+  }
+}
+
