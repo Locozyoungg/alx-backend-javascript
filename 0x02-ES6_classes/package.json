@@ -1,0 +1,23 @@
+{
+  "name": "alx-backend-javascript",
+  "version": "1.0.0",
+  "description": "0x02-ES_classes",
+  "main": "0-main.js",
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint .",
+    "full-test": "npm run lint && npm run test",
+    "dev": "node"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "eslint": "^7.32.0",
+    "jest": "^27.3.1"
+  },
+  "dependencies": {}
+}
+
