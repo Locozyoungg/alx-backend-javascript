@@ -1,22 +1,47 @@
 {
-  "name": "student-list",
+  "name": "alx-backend-javascript",
   "version": "1.0.0",
-  "description": "Project for handling a list of students",
-  "main": "0-main.js",
+  "description": "JavaScript backend project for ALX",
+  "main": "index.js",
   "scripts": {
-    "dev": "node 0-main.js",
+    "dev": "node",
     "test": "jest",
     "lint": "eslint .",
     "full-test": "npm run lint && npm run test"
   },
-  "author": "",
+  "author": "Collins Oloo",
   "license": "ISC",
+  "dependencies": {},
   "devDependencies": {
-    "@babel/core": "^7.8.4",
-    "@babel/preset-env": "^7.8.4",
-    "babel-jest": "^25.1.0",
-    "eslint": "^6.8.0",
-    "jest": "^25.1.0"
+    "@babel/cli": "^7.14.3",
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.4",
+    "babel-jest": "^27.0.6",
+    "eslint": "^7.28.0",
+    "jest": "^27.0.6"
+  },
+  "babel": {
+    "presets": ["@babel/preset-env"]
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    }
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es2021": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+      "ecmaVersion": 12,
+      "sourceType": "module"
+    },
+    "rules": {
+      "semi": ["error", "always"],
+      "quotes": ["error", "single"]
+    }
   }
 }
 
