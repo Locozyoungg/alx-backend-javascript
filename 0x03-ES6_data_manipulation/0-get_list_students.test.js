@@ -1,4 +1,4 @@
-import getListStudents from './0-get_list_students';
+import getListStudents from './0-get_list_students.js';
 
 test('getListStudents returns the correct array of student objects', () => {
   const students = getListStudents();
