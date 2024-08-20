@@ -1,48 +1,63 @@
-// 5-http.js
+
 const http = require('http');
-const url = require('url');
-const countStudents = require('./3-read_file_async');
+const fs = require('fs').promises;
 
-// Create an HTTP server
-const app = http.createServer((req, res) => {
-    // Parse the request URL
-    const parsedUrl = url.parse(req.url, true);
-
-    // Set the response header to plain text
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-
-    if (parsedUrl.pathname === '/') {
-        // Handle root path "/"
-        res.end('Hello Holberton School!');
-    } else if (parsedUrl.pathname === '/students') {
-        // Handle "/students" path
-        res.write('This is the list of our students\n');
-        
-        // Get the database file from the command line arguments
-        const database = process.argv[2];
-
-        if (database) {
-            countStudents(database)
-                .then(() => {
-                    res.end(); // End the response once data is written
-                })
-                .catch((error) => {
-                    res.end(error.message);
-                });
-        } else {
-            res.end('Cannot load the database');
+function countStudents(path) {
+  return new Promise((resolve, reject) => {
+    fs.readFile(path, 'utf8')
+      .then((data) => {
+        const lines = data.split('\n');
+        const hashtable = {};
+        let students = -1;
+        let result = '';
+        for (const line of lines) {
+          if (line.trim() !== '') {
+            const columns = line.split(',');
+            const field = columns[3];
+            const firstname = columns[0];
+            if (students >= 0) {
+              if (!Object.hasOwnProperty.call(hashtable, field)) {
+                hashtable[field] = [];
+              }
+              hashtable[field] = [...hashtable[field], firstname];
+            }
+            students += 1;
+          }
         }
-    } else {
-        // Handle any other path
-        res.writeHead(404, { 'Content-Type': 'text/plain' });
-        res.end('Not Found');
-    }
+        result += `Number of students: ${students}\n`;
+        for (const key in hashtable) {
+          if (Object.hasOwnProperty.call(hashtable, key)) {
+            result += `Number of students in ${key}: ${hashtable[key].length}. List: ${hashtable[key].join(', ')}\n`;
+          }
+        }
+        resolve(result);
+      })
+      .catch(() => {
+        reject(new Error('Cannot load the database'));
+      });
+  });
+}
+
+const app = http.createServer((req, res) => {
+  if (req.url === '/') {
+    res.writeHead(200);
+    res.end('Hello Holberton School!');
+  } else if (req.url === '/students') {
+    countStudents(process.argv[2])
+      .then((data) => {
+        res.writeHead(200);
+        res.end(`This is the list of our students\n${data}`);
+      })
+      .catch((error) => {
+        res.writeHead(404);
+        res.end(`This is the list of our students\n${error.message}`);
+      });
+  } else {
+    res.writeHead(404);
+    res.end('Not foundx');
+  }
 });
 
-// Listen on port 1245
-app.listen(1245, () => {
-    console.log('Server is listening on port 1245');
-});
+app.listen(1245);
 
-// Export the app variable
 module.exports = app;
