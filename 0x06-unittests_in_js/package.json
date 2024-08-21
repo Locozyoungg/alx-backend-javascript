@@ -1,0 +1,11 @@
+{
+    "name": "task_0",
+    "version": "1.0.0",
+    "scripts": {
+      "test": "./node_modules/mocha/bin/mocha"
+    },
+    "devDependencies": {
+      "mocha": "^10.0.0"
+    }
+  }
+  
